@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>USET - Contact</title>
+        <link rel="stylesheet" href="css/signin.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" integrity="sha512-W/zrbCncQnky/EzL+/AYwTtosvrM+YG/V6piQLSe2HuKS6cmbw89kjYkp3tWFn1dkWV7L1ruvJyKbLz73Vlgfg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <script src="js/contact.js"></script>
+    </head>
+<body>
+<div class="container" id="container">
+    <div class="form-container sign-in-container">
+        <form action="#" id="myForm">
+			<input type="text" placeholder="Name" id="name"/>
+			<input type="email" placeholder="Email" id="email"/>
+            <input type="number" placeholder="Phone" id="phone"/>
+			<textarea name="" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+			<button id="submit">Submit</button>
+		</form>
+
+        
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-right">
+                <h1 id="disappear">Contact us</h1>
+				<p  id="disappear2">To contact with us please enter your details responsively.</p>
+
+                <div id="success-message" style="display: none;">
+                    <h1>Form submitted successfully!</h1>
+                    <p>We will reach you soon by mail or phone.</p>
+                    <a href="profile-index.html"><button class="ghost" id="signUp">Back to Home</button></a>
+                </div>
+
+                <div class="footer-icons">
+
+                    <a href="https://www.instagram.com/prajins_2k4"><i class="fa fa-instagram"></i></a>
+                    <a href="https://twitter.com/PrajinsMicheal"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/prajins-micheal/"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/PRAJINS-MICHEAL"><i class="fa fa-github"></i></a>
+          
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

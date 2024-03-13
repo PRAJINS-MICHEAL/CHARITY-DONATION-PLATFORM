@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>USET - Dashboard</title>
+        <link rel="stylesheet" href="css/signin.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" integrity="sha512-W/zrbCncQnky/EzL+/AYwTtosvrM+YG/V6piQLSe2HuKS6cmbw89kjYkp3tWFn1dkWV7L1ruvJyKbLz73Vlgfg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    </head>
+<body>
+<div class="container" id="container">
+    <div class="dashboard-container sign-in-container">
+        <div class="transaction dash">
+            <h1>Transactions <i class="fa-solid fa-money-bill-transfer"></i></h1>
+            <p id="transactionCount"></p>
+        </div>
+        <div class="amount dash">
+            <h1>Amount <i class="fa-solid fa-money-bill"></i></h1>
+            <p><i class="fa-solid fa-indian-rupee-sign"></i> <span id="amountCount"></span></p>
+        </div>
+        
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-right">
+                <div class="dashboard-nav">
+                <a href="profile-index.html"><div class="back-home">
+                        <p><i class="fa-solid fa-arrow-left-long"></i> Home</p>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="logout" id="logoutButton">
+                        <p>Logout <i class="fa-solid fa-right-from-bracket"></i></p>
+                    </div>
+                </a>    
+                </div>
+                <div class="profile-img"></div>
+                
+                <h1 id="name"></h1>
+                
+				<p  id="email"></p>
+                <a href="/transaction-history"><button class="ghost">Transactions History</button></a>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript code to update the name and email
+    window.addEventListener('DOMContentLoaded', (event) => {
+        // Check if the user is authenticated and their info is available in the session
+        fetch('/getUserInfo')
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.name && data.email) {
+                    document.getElementById('name').textContent = data.name;
+                    document.getElementById('email').textContent = data.email;
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching user info:', error);
+            });
+    });
+</script>
+
+<script>
+    // JavaScript code to update the name and email
+    window.addEventListener('DOMContentLoaded', (event) => {
+        // Check if the user is authenticated and their info is available in the session
+        fetch('/getUserTransactionCount')
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.transactionCount !== undefined) {
+                document.getElementById('transactionCount').textContent = data.transactionCount;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching transaction count:', error);
+        });
+
+    });
+</script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+  // ... (previous code for name, email, and transaction count)
+
+  // Fetch and update the total amount
+  fetch('/getUserTransactionCount')
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.totalAmount !== undefined) {
+        document.getElementById('amountCount').textContent = data.totalAmount;
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching total amount:', error);
+    });
+});
+</script>
+
+
+<script>
+    // JavaScript code to handle logout button click
+    document.getElementById('logoutButton').addEventListener('click', () => {
+      // Make a GET request to the /logout route to log the user out
+      fetch('/logout')
+        .then(response => {
+          if (response.redirected) {
+            // If the server redirects to the sign-in page, navigate there
+            window.location.href = response.url;
+          } else {
+            console.error('Logout failed.');
+          }
+        })
+        .catch(error => {
+          console.error('Error logging out:', error);
+        });
+    });
+  </script>
+
+</body>
+</html>
